@@ -1,10 +1,13 @@
-import logo from './logo.svg';
-import './App.css';
 
+import './App.css';
+import Register from './Register';
 function App() {
+
+
+
   return (
     <div className="App">
-           <h1> Hello </h1>
+       <Register/>
     </div>
   );
 }

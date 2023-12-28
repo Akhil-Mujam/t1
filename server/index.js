@@ -2,15 +2,16 @@ const express= require('express')
 const app = express()
 const model = require('./Database/Model')
 const bodyParser = require('body-parser');
+const cors = require('cors')
 app.use(express.json())
 const path =require('path')
 require('./Database/Connect')
-app.use(bodyParser.urlencoded({ extended: true }));
-const static_path = path.join(__dirname,'./public/index.html')
-app.use(express.static(static_path));
-
+// app.use(bodyParser.urlencoded({ extended: true }));
+// const static_path = path.join(__dirname,'./public/index.html')
+// app.use(express.static(static_path));
+app.use(cors({origin:'*'}))
 app.get('/', (req, res) => {
-    res.send('welcom')
+    res.send('welcome')
   });
 
 app.post('/register',async(req,res) =>{
@@ -28,14 +29,14 @@ app.post('/register',async(req,res) =>{
 
        const data =  await user.save();
 
-        return res.send("Registration is successfull"+data)
+        return res.send("Registration is successfull")
     }
     else{
         return res.send("password error")
     }
 })
 
-const port = 5500
+const port = 8000
 app.listen(port,()=>{
-    console.log('port is running')
+    console.log(`port is running on ${port}`)
 })
