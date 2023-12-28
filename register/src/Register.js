@@ -30,6 +30,10 @@ const Register = () => {
             {
                 alert('already existing user')
             }
+            setname('')
+            setpassword('')
+            setemail('')
+            setcpassword('')
        }).catch((err)=>{
         console.log(err)
        })
