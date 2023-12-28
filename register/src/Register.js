@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import swal from 'sweetalert'
 const Register = () => {
     const [name,setname] = useState('')
     const [email,setemail] = useState('')
@@ -16,6 +17,19 @@ const Register = () => {
          cpassword:cpassword
        }).then((res) =>{
             console.log(res.data)
+            if(res.data=="Registration is successfull")
+            {
+                swal({
+                    title: "Registered Successfully",
+                    text: "",
+                    icon: "success",
+                    dangerMode: false,
+                  })
+            }
+            if(res.data== "already existing user")
+            {
+                alert('already existing user')
+            }
        }).catch((err)=>{
         console.log(err)
        })
@@ -29,32 +43,32 @@ const Register = () => {
         <div class="col-12 col-md-9 col-lg-7 col-xl-6">
           <div class="card rounded-15" >
             <div class="card-body p-5">
-              <h2 class="text-uppercase text-center mb-5">Create an account</h2>
+              <h2 class="text-uppercase text-center mb-5">Register</h2>
 
               <form >
 
                 <div class="form-outline mb-4">
                 <label class="form-label" for="form3Example1cg">Your Name</label>
-                  <input type="text" id="form3Example1cg" class="form-control form-control-lg" onChange={(e) =>{setname(e.target.value)}}/>
+                  <input type="text" id="form3Example1cg" class="form-control form-control-lg" value={name} onChange={(e) =>{setname(e.target.value)}}/>
                  
                 </div>
 
                 <div class="form-outline mb-4">
                 <label class="form-label" for="form3Example3cg">Your Email</label>
-                  <input type="email" id="form3Example3cg" class="form-control form-control-lg" onChange={(e)=>{setemail(e.target.value)}}/>
+                  <input type="email" id="form3Example3cg" class="form-control form-control-lg" value={email} onChange={(e)=>{setemail(e.target.value)}}/>
                   
                 </div>
 
                 <div class="form-outline mb-4">
                 <label class="form-label" for="form3Example4cg">Password</label>
-                  <input type="password" id="form3Example4cg" class="form-control form-control-lg" onChange={(e)=>{setpassword(e.target.value)}}/>
+                  <input type="password" id="form3Example4cg" class="form-control form-control-lg"value={password} onChange={(e)=>{setpassword(e.target.value)}}/>
 
                   
                 </div>
 
                 <div class="form-outline mb-4">
                 <label class="form-label" for="form3Example4cdg">Repeat your password</label>
-                  <input type="password" id="form3Example4cdg" class="form-control form-control-lg" onChange={(e)=>{setcpassword(e.target.value)}} />
+                  <input type="password" id="form3Example4cdg" class="form-control form-control-lg"value={cpassword} onChange={(e)=>{setcpassword(e.target.value)}} />
                  
                 </div>
 

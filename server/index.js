@@ -18,6 +18,9 @@ app.post('/register',async(req,res) =>{
 
 
     const {name,email,password,cpassword} = req.body;
+    const exist = await model.findOne({email:email})
+    if(!exist)
+    {
     if(password.length>=8 && password == cpassword)
     {
             const user = new model({
@@ -34,7 +37,13 @@ app.post('/register',async(req,res) =>{
     else{
         return res.send("password error")
     }
+   }
+   else{
+    res.send("already existing user")
+   }
+
 })
+
 
 const port = 8000
 app.listen(port,()=>{
